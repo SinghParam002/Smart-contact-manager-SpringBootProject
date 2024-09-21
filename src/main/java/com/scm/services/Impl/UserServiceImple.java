@@ -5,15 +5,19 @@ import java.util.UUID;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.scm.entites.User;
+import com.scm.helper.AppConstant;
 import com.scm.helper.ResourceNotFound;
 import com.scm.repositery.UserRepositery;
 import com.scm.services.userService;
 
 @Service
 public class UserServiceImple implements userService {
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private UserRepositery userRepositery;
@@ -23,6 +27,9 @@ public class UserServiceImple implements userService {
 
         String uuid = UUID.randomUUID().toString();
         user.setUserId(uuid);
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRolesList(List.of(AppConstant.ROLE_USER));
         return userRepositery.save(user);
     }
 

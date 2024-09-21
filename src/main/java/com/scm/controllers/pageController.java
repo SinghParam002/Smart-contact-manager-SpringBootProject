@@ -1,6 +1,7 @@
 package com.scm.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,10 +23,18 @@ import jakarta.validation.Valid;
 public class pageController {
 
     @Autowired
+    PasswordEncoder passwordEncoder;
+
+    @Autowired
     private userService userService;
 
     @Autowired
     UserRepositery userRepositery;
+
+    @GetMapping("/")
+    public String index() {
+        return "redirect:/home";
+    }
 
     @GetMapping("/home")
     public String test() {
@@ -77,6 +86,7 @@ public class pageController {
         User user2 = new User();
         user2.setName(userForm.getName());
         user2.setEmail(userForm.getEmail());
+        // user2.setPassword(passwordEncoder.encode(userForm.getPassword()));
         user2.setPassword(userForm.getPassword());
         user2.setAbout(userForm.getAbout());
         user2.setPhoneNumber(userForm.getPhoneNumber());
