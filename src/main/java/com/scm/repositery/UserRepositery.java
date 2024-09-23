@@ -10,4 +10,6 @@ import com.scm.entites.User;
 public interface UserRepositery extends JpaRepository<User, String> {
 
     Optional<User> findByEmail(String email);
+
+    // Optional<User> findByEmailAndPassword(String email, String password);
 }

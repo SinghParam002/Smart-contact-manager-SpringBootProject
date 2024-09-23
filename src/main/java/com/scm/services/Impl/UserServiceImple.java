@@ -97,4 +97,9 @@ public class UserServiceImple implements userService {
 
     }
 
+    @Override
+    public User getuserByemail(String email) {
+
+        return userRepositery.findByEmail(email).orElseThrow(() -> new ResourceNotFound("user not found"));
+    }
 }
