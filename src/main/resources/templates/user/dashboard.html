@@ -1,12 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html
+  lang="en"
+  th:replace="~{base::parent(~{::#content}, ~{::script})}"
+  xmlns:th="http://www.thymeleaf.org"
+>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <!-- The title will override the parent template's title -->
+    <title th:text="${loginUser.name}+' | Dashboard '"></title>
   </head>
+
   <body>
-    <h1>this is Dashboard</h1>
-    <h2 th:text="${loginUser.name}"></h2>
+    <div id="content">
+      <!--if user  Loggedin hai too yhe wala sidebar chalega -->
+      <div th:if="${loginUser}">
+        <div th:replace="user/sidebar:: sidebar"></div>
+      </div>
+
+      <!-- Content Section -->
+
+      <div class="sm:pl-64" style="height: 1000px">
+        <div class="flex justify-center flex-col items-center gap-3">
+          <h1 class="text-4xl pt-10">Dashboard page here</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
+            incidunt officiis excepturi sequi earum veritatis, saepe quisquam
+            eveniet molestiae, nemo distinctio reiciendis dolor nihil
+            accusantium harum reprehenderit eos rem beatae.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- Scripts for the Home Page -->
+    <script>
+      console.log("this is profile page.");
+    </script>
   </body>
 </html>

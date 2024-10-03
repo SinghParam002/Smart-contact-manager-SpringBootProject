@@ -26,18 +26,25 @@
     <link rel="stylesheet" th:href="@{'/css/style.css'}" />
   </head>
   <style>
-    body {
-      padding-top: 70px; /* Adjust this based on your navbar's height */
+    .contentClass {
+      margin-top: 70px;
     }
   </style>
+
   <body class="dark:bg-gray-900 dark:text-white">
     <!-- Navbar Fragment -->
-    <div>
+    <!--if user Loggedin too yhe wala  navbar chalega -->
+    <div th:if="${loginUser}">
+      <div th:replace="user/user_navbar :: user-navbar"></div>
+    </div>
+
+    <!--if user Not Loggedin too yhe wala navbar chalega -->
+    <div th:unless="${loginUser}">
       <div th:replace="navbar :: navbar"></div>
     </div>
 
     <!-- Content Section (Dynamically replaced by child templates) -->
-    <div>
+    <div class="contentClass">
       <section data-th-replace="${content}"></section>
     </div>
 

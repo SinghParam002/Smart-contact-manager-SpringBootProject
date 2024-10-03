@@ -24,16 +24,6 @@ public class UserController {
     @Autowired
     private userService uService;
 
-    @ModelAttribute
-    public void addLoggedUserInformation(Model model, Authentication authentication) {
-        String Username = Helper.getLoginEmail(authentication);
-        logger.info("User name : " + Username);
-        User user = uService.getuserByemail(Username);
-        System.out.println(user.getEmail());
-        System.out.println(user.getName());
-        model.addAttribute("loginUser", user);
-    }
-
     @RequestMapping(value = "/dashboard")
     public String userDashboard() {
 
