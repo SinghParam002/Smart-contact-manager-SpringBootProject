@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.scm.entites.Contact;
+import com.scm.entites.User;
 
 @Service
 public interface ContactService {
@@ -22,4 +23,6 @@ public interface ContactService {
     List<Contact> search(String name, String email, String phoneNumber);
 
     List<Contact> getByUserId(String id);
+
+    List<Contact> getByUser(User user);
 }

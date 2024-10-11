@@ -1,5 +1,7 @@
 package com.scm.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -66,23 +68,49 @@ public class ContactController {
         contact.setUser(user);
 
         contactService.save(contact);
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println(contactForm.toString());
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
+        // System.out.println();
+        // System.out.println();
+        // System.out.println();
+        // System.out.println();
+        // System.out.println();
+        // System.out.println();
+        // System.out.println(contactForm.toString());
+        // System.out.println();
+        // System.out.println();
+        // System.out.println();
+        // System.out.println();
+        // System.out.println();
+        // System.out.println();
         session.setAttribute("message",
 
                 Message.builder().content("contact added successfully").type(messageType.green).build());
         return "redirect:/user/contacts/add";
+    }
+
+    @RequestMapping
+    public String viewContacts(Model model, Authentication authentication) {
+        String username = Helper.getLoginEmail(authentication);
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println("User name :");
+        System.out.println(username);
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
+        User user = uService.getuserByemail(username);
+        List<Contact> list = contactService.getByUser(user);
+        model.addAttribute("contact", list);
+        // System.out.println(list);
+
+        return "user/contacts";
+
     }
 
 }

@@ -29,7 +29,6 @@ public class Contact {
     private String email;
     private String phoneNumber;
     private String address;
-    private String picture;
     @Column(length = 7000)
     private String discription;
     private boolean favorite = false;

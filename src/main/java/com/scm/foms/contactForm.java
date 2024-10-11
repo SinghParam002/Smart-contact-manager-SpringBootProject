@@ -23,7 +23,6 @@ public class contactForm {
     @NotBlank(message = "Address is required")
     private String address;
 
-    private MultipartFile contactImage;
     private String discription;
     private boolean favorite;
     private String webSiteLink;
@@ -59,14 +58,6 @@ public class contactForm {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public MultipartFile getProFileImage() {
-        return contactImage;
-    }
-
-    public void setProFileImage(MultipartFile proFileImage) {
-        this.contactImage = proFileImage;
     }
 
     public String getDiscription() {
